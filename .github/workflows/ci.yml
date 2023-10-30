@@ -68,10 +68,11 @@ jobs:
           ssh_private_key: ${{ secrets.YC_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.YC_PUBLIC_KEY }}
           deployment_mode: docker-compose
-          copy_stack_file: true
+          copy_stack_file: false
           deploy_path: /home/ubuntu/app
           stack_file_name: docker-compose.yml
           args: up -d
+
 #      - uses: aosus/docker-compose-gitops-action@v1
 #        name: Remote Deployment
 #        with:
