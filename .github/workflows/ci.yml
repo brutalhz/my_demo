@@ -70,8 +70,8 @@ jobs:
           username: ${{ secrets.YC_USERNAME }}
           port: 22
           key: ${{ secrets.YC_PRIVATE_KEY }}
-          source: "./docker-compose.yml"
-          target: "~/app/${{ github.event.repository.name }}/docker-compose.yml"
+          source: "docker-compose.yml"
+          target: "~/app/${{ github.event.repository.name }}/"
           strip_components: 1
 
       - name: Deploy to vps via SSH action
