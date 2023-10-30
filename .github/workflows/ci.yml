@@ -61,19 +61,29 @@ jobs:
     needs: [push_to_Docker_Hub]
 
     steps:
-
-      - uses: aosus/docker-compose-gitops-action@v1
-        name: Remote Deployment
+      - name: Deploy to Docker swarm
+        uses: wshihadeh/docker-deployment-action@v1
         with:
           remote_docker_host: ${{ secrets.YC_USERNAME }}@${{ secrets.YC_HOST }}
-          args: --remove-orphans -d --force-recreate
-          tailscale_ssh: false
-          ssh_public_key: "{{ secrets.YC_PUBLIC_KEY }}"
-          ssh_private_key: "{{ secrets.YC_PRIVATE_KEY }}"
-          compose_file_path: docker-compose.yml
-          #post_upload_command: touch "upload_command.txt"
+          ssh_private_key: ${{ secrets.YC_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.YC_PUBLIC_KEY }}
+          deployment_mode: docker-compose
+          copy_stack_file: true
+          deploy_path: /home/ubuntu/app
+          stack_file_name: docker-compose.yml
 
-       # Copy docker-compose and .env files to target server
+#      - uses: aosus/docker-compose-gitops-action@v1
+#        name: Remote Deployment
+#        with:
+#          remote_docker_host: ${{ secrets.YC_USERNAME }}@${{ secrets.YC_HOST }}
+#          args: --remove-orphans -d --force-recreate
+#          tailscale_ssh: false
+#          ssh_public_key: "{{ secrets.YC_PUBLIC_KEY }}"
+#          ssh_private_key: "{{ secrets.YC_PRIVATE_KEY }}"
+#          compose_file_path: docker-compose.yml
+#          #post_upload_command: touch "upload_command.txt"
+#
+#       # Copy docker-compose and .env files to target server
 #      - name: copy files to target server via scp
 #        uses: appleboy/scp-action@master
 #        with:
