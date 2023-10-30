@@ -64,14 +64,15 @@ jobs:
 
        # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
-        uses: appleboy/scp-action@v0.1.3
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.YC_HOST }}
           username: ${{ secrets.YC_USERNAME }}
           port: 22
           key: ${{ secrets.YC_PRIVATE_KEY }}
           source: "./docker-compose.yml"
-          target: "~/app/${{ github.event.repository.name }}/"
+          target: "~/app/${{ github.event.repository.name }}/docker-compose.yml"
+          strip_components: 1
 
       - name: Deploy to vps via SSH action
         uses: appleboy/ssh-action@master
