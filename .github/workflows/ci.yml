@@ -59,8 +59,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [push_to_Docker_Hub]
-
-      - uses: actions/checkout@v2
+      - name: test
+        uses: actions/checkout@v2
 
        # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
