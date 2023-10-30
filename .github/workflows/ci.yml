@@ -65,8 +65,9 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          mkdir ../app
-          cp -rf docker-compose.yml nginx/app.conf ../app
+          mkdir -p ../app/nginx
+          cp docker-compose.yml ../app
+          cp -rf nginx/app.conf ../app/nginx
           tar -cvf deploy.tar ../app
 
        # Copy docker-compose and .env files to target server
