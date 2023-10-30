@@ -22,6 +22,7 @@ jobs:
         # install applicaion dependencies
       - name: Install dependencies
         run: |
+           npm cache clean --force
            npm i --force
 
       - name: build
