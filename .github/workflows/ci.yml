@@ -65,9 +65,9 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          mkdir ../build
-          cp docker-compose.yml ../build
-          tar -cvf deploy.tar ../build/
+          mkdir ../app
+          cp docker-compose.yml ../app
+          tar -cvf deploy.tar ../app
 
        # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
@@ -78,19 +78,20 @@ jobs:
           port: 22
           key: ${{ secrets.YC_PRIVATE_KEY }}
           source: "deploy.tar"
-          target: "/home/ubuntu/app/"
+          target: "/home/ubuntu/"
 #          strip_components: 1
 #
-#      - name: Deploy to vps via SSH action
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.YC_HOST }}
-#          username: ${{ secrets.YC_USERNAME }}
-#          PORT: 22
-#          KEY: ${{ secrets.YC_PRIVATE_KEY }}
-#          script: |
-#            cd app/
-#            docker system prune -af
-#            docker compose down
-#            docker compose pull
-#            docker compose up --build --remove-orphans -d --force-recreate
+      - name: Deploy to vps via SSH action
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.YC_HOST }}
+          username: ${{ secrets.YC_USERNAME }}
+          PORT: 22
+          KEY: ${{ secrets.YC_PRIVATE_KEY }}
+          script: |
+            tar -xf deploy.tar
+            cd app/
+            docker system prune -af
+            docker compose down
+            docker compose pull
+            docker compose up  --remove-orphans -d --force-recreate
