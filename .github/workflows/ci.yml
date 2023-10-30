@@ -62,10 +62,10 @@ jobs:
 
     steps:
       - name: Deploy to vps via SSH action
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.YC_HOST }}
-          USERNAME: ${{ secrets.YC_USERNAME }}
+          username: ${{ secrets.YC_USERNAME }}
           PORT: 22
           KEY: ${{ secrets.YC_PRIVATE_KEY }}
           script: |
