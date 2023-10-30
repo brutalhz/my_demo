@@ -63,6 +63,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Run a multi-line script
+        run: |
+          mkdir ../build
+          cp -TR docker-compose.yml ../build
+          tar -cvf deploy.tar ../build/
+
        # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
         uses: appleboy/scp-action@master
@@ -71,9 +77,9 @@ jobs:
           username: ${{ secrets.YC_USERNAME }}
           port: 22
           key: ${{ secrets.YC_PRIVATE_KEY }}
-          source: "docker-compose.yml"
+          source: "deploy.tar"
           target: "/home/ubuntu/app/"
-          strip_components: 1
+#          strip_components: 1
 #
 #      - name: Deploy to vps via SSH action
 #        uses: appleboy/ssh-action@master
