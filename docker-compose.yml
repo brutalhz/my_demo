@@ -1,10 +1,10 @@
 version: "3"
 services:
   app:
-    image: datachain-demo
+    image: brutalhz/datachain-demo
     networks:
       - mynet
-  
+
   nginx:
     image: nginx:latest
     ports:
