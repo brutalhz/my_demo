@@ -71,7 +71,7 @@ jobs:
           copy_stack_file: true
           deploy_path: /home/ubuntu/app
           stack_file_name: docker-compose.yml
-
+          args: up -d
 #      - uses: aosus/docker-compose-gitops-action@v1
 #        name: Remote Deployment
 #        with:
