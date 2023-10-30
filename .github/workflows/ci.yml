@@ -67,6 +67,7 @@ jobs:
         with:
           remote_docker_host: ${{ secrets.YC_USERNAME }}@${{ secrets.YC_HOST }}
           args: --remove-orphans -d --force-recreate
+          tailscale_ssh: false
           ssh_public_key: "{{ secrets.YC_PUBLIC_KEY }}"
           ssh_private_key: "{{ secrets.YC_PRIVATE_KEY }}"
           compose_file_path: docker-compose.yml
