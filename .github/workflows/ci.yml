@@ -67,7 +67,7 @@ jobs:
         run: |
           mkdir -p ../app/nginx
           cp docker-compose.yml ../app
-          cp nginx/app.conf ../app/nginx
+          cp -r nginx/ ../app/
           tar -cvf deploy.tar ../app
 
        # Copy docker-compose and .env files to target server
