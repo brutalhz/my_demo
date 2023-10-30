@@ -69,7 +69,7 @@ jobs:
           host: ${{ secrets.YC_HOST }}
           username: ${{ secrets.YC_USERNAME }}
           port: 22
-          key: ${‎{ secrets.YC_PRIVATE_KEY }‎}
+          key: ${{ secrets.YC_PRIVATE_KEY }}
           source: "./docker-compose.yml"
           target: "~/app/${‎{ github.event.repository.name }‎}/"
 
