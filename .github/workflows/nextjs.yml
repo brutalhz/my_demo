@@ -9,7 +9,7 @@ jobs:
       contents: write
       statuses: write
       actions: write
-      pages: write  
+      pages: write
       id-token: write
     environment:
       name: production
@@ -25,14 +25,14 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm i --force
-      - run: npm run build 
+      - run: npm run build
       - name: configure github pages
         uses: actions/configure-pages@v3
         with:
           static_site_generator: next
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v1
-        with: 
+        with:
           path: "./out"
       - name: deploy
         id: deployment
