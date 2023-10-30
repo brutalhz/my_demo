@@ -65,7 +65,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          mkdir -p ../app/nginx
+          mkdir ../app
           cp docker-compose.yml ../app
           cp nginx/app.conf ../app
           tar -cvf deploy.tar ../app
@@ -92,7 +92,6 @@ jobs:
           script: |
             tar -xf deploy.tar
             cd app/
-            cp app.conf nginx/ && rm app.conf
             docker system prune -af
             docker compose down
             docker login -u ${{ secrets.REACTUSERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
