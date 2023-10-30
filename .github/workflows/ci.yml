@@ -71,7 +71,7 @@ jobs:
           ssh_public_key: "{{ secrets.YC_PUBLIC_KEY }}"
           ssh_private_key: "{{ secrets.YC_PRIVATE_KEY }}"
           compose_file_path: docker-compose.yml
-          upload_directory: true
+          upload_directory: false
           #post_upload_command: touch "upload_command.txt"
 
        # Copy docker-compose and .env files to target server
