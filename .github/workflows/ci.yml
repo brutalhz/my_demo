@@ -80,7 +80,7 @@ jobs:
           port: 22
           key: ${{ secrets.YC_PRIVATE_KEY }}
           source: "deploy.tar"
-          target: "/home/ubuntu/"
+          target: ${{ secrets.TARGET }}
 #          strip_components: 1
 #
       - name: Deploy to vps via SSH action
@@ -97,4 +97,4 @@ jobs:
             docker compose down
             docker login -u ${{ secrets.REACTUSERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
             docker compose pull
-            docker compose up  --remove-orphans -d --force-recreate
+            docker compose up -p my_demo --remove-orphans -d --force-recreate
