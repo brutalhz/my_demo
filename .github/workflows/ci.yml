@@ -97,4 +97,4 @@ jobs:
             docker compose down
             docker login -u ${{ secrets.REACTUSERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
             docker compose pull
-            docker compose up -p my_demo --remove-orphans -d --force-recreate
+            docker compose -p my_demo up --remove-orphans -d --force-recreate
